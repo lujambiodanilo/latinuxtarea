@@ -31,7 +31,7 @@ class latinuxtarea_tarea(osv.osv):
     _columns = {
         'user_id': fields.many2one('res.users', 'Creator', required=True, readonly=True),
         'name': fields.char('Task Summary', size=128, required=True, select=True),
-        'create_date': fields.date('Create Date', select=True),
+        'date_create': fields.date('Create Date', select=True),
         'date_deadline': fields.date('Deadline',select=True),
         'partner_id': fields.many2one('res.partner', 'Partner'),
         'description': fields.text('Description', help='Task contents'),
@@ -44,9 +44,9 @@ class latinuxtarea_tarea(osv.osv):
     _defaults = {
         'state': lambda *a: 'draft',
         'user_id': lambda obj, cr, uid, context: uid,
-        'create_date': lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
+        'date_create': lambda *a: time.strftime('%Y-%m-%d %H:%M:%S'),
     }
-    _order = 'create_date desc'
+    _order = 'date_create desc'
 
 
     def do_open(self, cr, uid, ids, context={}):
@@ -93,13 +93,13 @@ class latinuxtarea_recursos(osv.osv):
     """recursos usados en una tarea """
     _name = 'latinuxtarea.recursos'
     _columns = {
-        'task':field.many2one('latinuxtarea.tarea','Task')
-        'name_r1':field.many2one('product.product', 'Name_r1'),
-        'quantity_r1':field.integer('Quantity_r1'),
-        'name_r2':field.many2one('product.product','Name_r2'),
-        'quantity_r2':field.integer('Quantity_r2'),
-        'name_r3':field.many2one('product.product', 'Name_r3'),
-        'quantity_r3':field.integer('Quantity_r3'),
+        'task':fields.many2one('latinuxtarea.tarea','Task'),
+        'name_r1':fields.many2one('product.product', 'Product'),
+        'quantity_r1':fields.integer('Quantity_r1'),
+        'name_r2':fields.many2one('product.product','Product'),
+        'quantity_r2':fields.integer('Quantity_r2'),
+        'name_r3':fields.many2one('product.product', 'Product'),
+        'quantity_r3':fields.integer('Quantity_r3'),
     }
 
     _defaults = {

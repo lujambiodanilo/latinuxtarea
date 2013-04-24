@@ -29,7 +29,7 @@ Una primera versión de módulo para manejar tareas en Latinux
 """,
     'author': 'Latinux Sistemas',
     'website': '',
-    'depends': ['base'],
+    'depends': ['base','product'],
     'data': [
         'tareaslatinux_view.xml',
     ],
