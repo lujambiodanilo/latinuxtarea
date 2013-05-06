@@ -2,6 +2,42 @@
 <openerp>
 <data>
 
+<!-- latinux tareas recursos -->
+
+
+    <record model="ir.ui.view" id="latinuxtarea_recursos_wizard_form_view">
+    	<field name="name">latinuxtarea.recursos.wizard.form.view</field>
+		<field name="model">latinuxtarea.recursos.wizard</field>
+		<field name="type">form</field>
+		<field name="arch" type="xml">
+			<form string="LT Resources Wizard">
+			  <field name="name_r1"/>
+			  <field name="quantity_r1"/>
+			  <field name="name_r2"/>
+			  <field name="quantity_r2"/>
+			  <field name="name_r3"/>
+			  <field name="quantity_r3"/>
+			  <group colspan="2" col="4">
+			  <button type="action" special="cancel" icon="gtk-cancel" string="Cancelar" />
+			  <button type="object" name="accion" icon="gtk-ok" string="Aceptar" />
+			  </group>
+			</form>
+		</field>
+    </record>
+		
+    <record id="action_latinuxtarea_recursos_wizard_form" model="ir.actions.act_window" >
+        <field name="name">LT Resources Wizard</field>
+	<field name="type">ir.actions.act_window</field>
+        <field name="res_model">latinuxtarea.recursos.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+	<field name="view_id" ref="latinuxtarea_recursos_wizard_form_view"/>
+	<field name="target">new</field>	
+    </record>
+
+
+
+
     <record model="ir.ui.view" id="latinuxtarea_tarea_tree_view">
 		<field name="name">latinuxtarea.tarea.tree</field>
 		<field name="model">latinuxtarea.tarea</field>
@@ -48,7 +84,7 @@
 			    <button name="do_cancel" states="draft,open,pending" string="Cancel" type="object" icon="gtk-cancel"/>
 			    <button name="do_draft" states="open" string="Draft" type="object" icon="gtk-indent"/>
 			    <button name="do_open" states="pending,draft" string="Start Task" type="object" icon="gtk-media-play"/>
-			    <button type='action' name='%(action_open_resources)d' string='Add Resources' states="open" />	
+			    <button type='action' name='%(action_latinuxtarea_recursos_wizard_form)d' string='Add Resources' states="open" />	
 
 			  </group>
 			</form>					
@@ -67,70 +103,9 @@
     <menuitem id="latinuxtarea_tarea_menu_1" parent="latinuxtarea_tarea_menu" sequence="10" name="LatinuxTarea Tarea"/>
     <menuitem id="latinuxtarea_tarea_menu_2" action="action_latinuxtarea_tarea_tree" parent="latinuxtarea_tarea_menu_1" sequence="1" name="LatinuxTarea Tarea"/>
 
-
-<!-- latinux tareas recursos -->
-
-
-    <record model="ir.ui.view" id="latinuxtarea_recursos_tree_view">
-		<field name="name">latinuxtarea.recursos.tree</field>
-		<field name="model">latinuxtarea.recursos</field>
-		<field name="type">tree</field>
-		<field name="arch" type="xml">
-		  <tree string="LatinuxTarea Resources">
-		    <field name="task" invisible="1" />
-		    <field name="name_r1" string="Resource 1"/>
-		    <field name="quantity_r1" string="Qty Res 1"/>
-		    <field name="name_r2" string="Resource 2"/>
-		    <field name="quantity_r2" string="Qty Res 2"/>
-		    <field name="name_r3" string="Resource 3"/>
-		    <field name="quantity_r3" string="Qty Res 3"/>
-		  </tree>
-		</field>
-    </record>    
-    
-    <record model="ir.ui.view" id="latinuxtarea_recursos_form_view">
-    	<field name="name">latinuxtarea.recursos.form</field>
-		<field name="model">latinuxtarea.recursos</field>
-		<field name="type">form</field>
-		<field name="arch" type="xml">
-			<form string="LatinuxTarea Resources">
-			  <field name="name_r1"/>
-			  <field name="quantity_r1"/>
-			  <field name="name_r2"/>
-			  <field name="quantity_r2"/>
-			  <field name="name_r3"/>
-			  <field name="quantity_r3"/>
-			</form>					
-		</field>
-    </record>
-		
-    <record model="ir.actions.act_window" id="action_latinuxtarea_recursos_form">
-        <field name="name">Latinux tarea Recursos</field>
-	<field name="type">ir.actions.act_window</field>
-        <field name="res_model">latinuxtarea.recursos</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">form</field>
-    </record>
-
-
-    <record id="action_open_resources" model="ir.actions.act_window">
-      <field name="name">Latinuxtarea Resources</field>
-      <field name="res_model">latinuxtarea.recursos</field>
-      <field name="view_type">form</field>
-      <field name="view_mode">form</field>
-      <field name="target">new</field>
-    </record>
-
-		
-    <menuitem id="latinuxtarea_recursos_menu" sequence="10" name="LatinuxTareas Recursos"/>
-    <menuitem id="latinuxtarea_recursos_menu_1" parent="latinuxtarea_tarea_menu" sequence="10" name="LatinuxTarea Recursos"/>
-    <menuitem id="latinuxtarea_recursos_menu_2" action="action_latinuxtarea_recursos_form" parent="latinuxtarea_recursos_menu_1" sequence="1" name="LatinuxTarea Recursos"/>
-
-
-
-
-
 	
+
+
 </data>
 </openerp>
 
